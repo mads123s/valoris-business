@@ -4,160 +4,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valoris Business</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body {
+        html, body {
+            height: 100%; /* S'assure que le body prend 100% de la hauteur de l'écran */
             margin: 0;
             font-family: Arial, sans-serif;
-            background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
-            background-size: cover;
-            color: #333;
-            text-align: center;
         }
+
+        /* Image de fond */
+        body {
+            background-image: url('https://images.unsplash.com/photo-1581091870627-9b5315067888'); /* Image générique d'un bureau moderne */
+            background-size: cover; /* L'image va se redimensionner pour couvrir toute la zone */
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            position: relative;
+            z-index: 0;
+            overflow-x: hidden;
+            filter: brightness(60%); /* L'image devient un peu plus sombre pour améliorer la lisibilité */
+            min-height: 100vh; /* Garantit que le contenu prend au moins toute la hauteur de l'écran */
+        }
+
+        /* Superposition sombre */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Superposition noire */
+            z-index: -1;
+        }
+
         header {
-            background-color: rgba(30, 60, 114, 0.9);
+            background-color: rgba(30, 60, 114, 0.8);
             color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        header img.logo {
+            height: 60px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            position: relative;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            color: #1e3c72;
+        }
+
+        section {
             padding: 30px 20px;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        .intro {
-            padding: 20px;
-            font-size: 1.2em;
-            background-color: rgba(255, 255, 255, 0.8);
-            margin: 20px;
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Légère transparence */
             border-radius: 10px;
-        }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 10px;
-            padding: 20px;
-        }
-        .gallery img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s ease forwards;
+            animation: fadeIn 1s forwards;
         }
-        .gallery img:nth-child(2) { animation-delay: 0.3s; }
-        .gallery img:nth-child(3) { animation-delay: 0.6s; }
-        .gallery img:nth-child(4) { animation-delay: 0.9s; }
-        @keyframes fadeInUp {
-            to {
+
+        /* Animation fade-in */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        .cta {
-            margin: 30px 0;
+
+        #gallery img {
+            width: 45%;
+            margin: 2%;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
         }
-        .cta a {
-            background-color: #25D366;
+
+        #gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            background-color: rgba(30, 60, 114, 0.8);
             color: white;
-            padding: 15px 25px;
-            text-decoration: none;
-            font-size: 1.2em;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 30px;
         }
-        .cta a:hover {
-            background-color: #1ebe57;
-        }
-        .whatsapp-float {
+
+        .whatsapp-btn {
             position: fixed;
-            width: 60px;
-            height: 60px;
             bottom: 20px;
             right: 20px;
             background-color: #25D366;
             color: white;
+            padding: 15px 25px;
             border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-            z-index: 100;
-            animation: pulse 1.5s infinite;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            font-size: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            overflow: visible;
+            z-index: 999;
         }
-        .whatsapp-float::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(37, 211, 102, 0.5);
-            border-radius: 50%;
-            top: 0;
-            left: 0;
-            animation: wave 1.5s infinite;
-            z-index: -1;
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
         }
-        .whatsapp-float img {
-            width: 35px;
-            margin-top: 12px;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        @keyframes wave {
-            0% {
-                transform: scale(1);
-                opacity: 0.6;
+
+        /* Rendre la page responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
             }
-            100% {
-                transform: scale(2);
-                opacity: 0;
+            nav {
+                margin-top: 10px;
+            }
+            .whatsapp-btn {
+                padding: 12px 22px;
+                font-size: 24px;
             }
         }
-        footer {
-            background-color: rgba(30, 60, 114, 0.9);
-            color: white;
-            padding: 15px;
-            margin-top: 20px;
-        }
+
     </style>
 </head>
 <body>
     <header>
+        <img src="images/logo_valoris_generated.png" alt="Logo Valoris Business" class="logo">
         <h1>Valoris Business</h1>
+        <nav>
+            <a href="#accueil">Accueil</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </header>
-
-    <section class="intro">
-        <p>De la LED à l’assurance, un service brillant et rassurant.<br>
-        Votre centre de contact pour un télémarketing gagnant !</p>
+    <section id="accueil">
+        <h2>Bienvenue chez Valoris Business</h2>
+        <p>De la LED à l’assurance, un service brillant et rassurant. Votre centre de contact pour un télémarketing gagnant !</p>
     </section>
-
-    <section class="gallery">
-        <img src="https://images.unsplash.com/photo-1599384222174-7bfa034bd91c?auto=format&fit=crop&w=800&q=80" alt="Éclairage LED">
-        <img src="https://images.unsplash.com/photo-1581090700227-4c4e26c3446b?auto=format&fit=crop&w=800&q=80" alt="Bureau centre d'appel">
-        <img src="https://images.unsplash.com/photo-1581092588429-8d69b0f5f069?auto=format&fit=crop&w=800&q=80" alt="Assurance contrat">
-        <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=800&q=80" alt="Télémarketing">
+    <section id="services">
+        <h2>Nos Services</h2>
+        <p>Nous offrons un service de qualité en prise de rendez-vous et télévente. Notre centre de contact garantit professionnalisme, efficacité et résultats. Avec Valoris Business, vos campagnes bénéficient d'un accompagnement personnalisé pour maximiser votre succès commercial.</p>
     </section>
-
-    <div class="cta">
-        <a href="https://wa.me/212635419426" target="_blank">📞 Contactez-nous sur WhatsApp</a>
-    </div>
-
-    <audio id="popSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3" preload="auto"></audio>
-
-    <a href="https://wa.me/212635419426" class="whatsapp-float" target="_blank" onclick="playPop()">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
-
+    <section id="gallery">
+        <h2>Nos Produits</h2>
+        <img src="images/led1.jpg" alt="Éclairage LED">
+        <img src="images/assurance1.jpg" alt="Assurance contrat">
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email : <a href="mailto:valoris.vb@gmail.com">valoris.vb@gmail.com</a></p>
+        <p><a href="https://wa.me/212635419426">Contactez-nous sur WhatsApp</a></p>
+    </section>
     <footer>
-        &copy; 2025 Valoris Business - Tous droits réservés.
+        <p>&copy; 2025 Valoris Business - Tous droits réservés.</p>
     </footer>
 
-    <script>
-        function playPop() {
-            document.getElementById('popSound').play();
-        }
-    </script>
+    <!-- Bouton WhatsApp -->
+    <a href="https://wa.me/212635419426" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i> <!-- Ajoutez une icône WhatsApp si nécessaire -->
+    </a>
+
 </body>
 </html>
