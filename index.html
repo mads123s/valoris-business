@@ -22,7 +22,7 @@
             position: relative;
             z-index: 0;
             overflow-x: hidden;
-            filter: brightness(60%); /* L'image devient un peu plus sombre pour améliorer la lisibilité */
+            filter: brightness(50%); /* Rendre l'image plus sombre pour améliorer la lisibilité */
             min-height: 100vh; /* Garantit que le contenu prend au moins toute la hauteur de l'écran */
         }
 
@@ -36,7 +36,7 @@
         }
 
         header {
-            background-color: rgba(30, 60, 114, 0.8);
+            background-color: rgba(30, 60, 114, 0.8); /* Arrière-plan du header avec transparence */
             color: white;
             padding: 20px;
             text-align: center;
@@ -76,6 +76,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             opacity: 0;
             animation: fadeIn 1s forwards;
+            color: #333; /* Assurer un bon contraste du texte */
         }
 
         /* Animation fade-in */
@@ -113,6 +114,7 @@
             margin-top: 30px;
         }
 
+        /* Bouton WhatsApp */
         .whatsapp-btn {
             position: fixed;
             bottom: 20px;
