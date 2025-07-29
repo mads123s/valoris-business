@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valoris Business</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            text-align: center;
+        }
+        header {
+            background-color: rgba(30, 60, 114, 0.9);
+            color: white;
+            padding: 30px 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .intro {
+            padding: 20px;
+            font-size: 1.2em;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin: 20px;
+            border-radius: 10px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        .gallery img:nth-child(2) { animation-delay: 0.3s; }
+        .gallery img:nth-child(3) { animation-delay: 0.6s; }
+        .gallery img:nth-child(4) { animation-delay: 0.9s; }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .cta {
+            margin: 30px 0;
+        }
+        .cta a {
+            background-color: #25D366;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .cta a:hover {
+            background-color: #1ebe57;
+        }
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            z-index: 100;
+            animation: pulse 1.5s infinite;
+            cursor: pointer;
+            overflow: visible;
+        }
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(37, 211, 102, 0.5);
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            animation: wave 1.5s infinite;
+            z-index: -1;
+        }
+        .whatsapp-float img {
+            width: 35px;
+            margin-top: 12px;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes wave {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+        footer {
+            background-color: rgba(30, 60, 114, 0.9);
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Valoris Business</h1>
+    </header>
+
+    <section class="intro">
+        <p>De la LED à l’assurance, un service brillant et rassurant.<br>
+        Votre centre de contact pour un télémarketing gagnant !</p>
+    </section>
+
+    <section class="gallery">
+        <img src="https://images.unsplash.com/photo-1599384222174-7bfa034bd91c?auto=format&fit=crop&w=800&q=80" alt="Éclairage LED">
+        <img src="https://images.unsplash.com/photo-1581090700227-4c4e26c3446b?auto=format&fit=crop&w=800&q=80" alt="Bureau centre d'appel">
+        <img src="https://images.unsplash.com/photo-1581092588429-8d69b0f5f069?auto=format&fit=crop&w=800&q=80" alt="Assurance contrat">
+        <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=800&q=80" alt="Télémarketing">
+    </section>
+
+    <div class="cta">
+        <a href="https://wa.me/212635419426" target="_blank">📞 Contactez-nous sur WhatsApp</a>
+    </div>
+
+    <audio id="popSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3" preload="auto"></audio>
+
+    <a href="https://wa.me/212635419426" class="whatsapp-float" target="_blank" onclick="playPop()">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <footer>
+        &copy; 2025 Valoris Business - Tous droits réservés.
+    </footer>
+
+    <script>
+        function playPop() {
+            document.getElementById('popSound').play();
+        }
+    </script>
+</body>
+</html>
